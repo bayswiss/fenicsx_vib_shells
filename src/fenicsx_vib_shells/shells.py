@@ -38,18 +38,15 @@ class ShellModel:
         self._build_forms()
 
     # ----- Function space -----
-
     def _build_function_space(self):
         cell_name = self.mesh.topology.cell_name()
         deg = self.degree
-        is_simplex = cell_name in ("triangle", "tetrahedron")
 
-        if deg >= 2 and is_simplex:
+        if deg==2 and cell_name=="triangle":
             base = basix.ufl.element("Lagrange", cell_name, deg)
-            bubble = basix.ufl.element("Bubble", cell_name, deg + 1)
+            bubble = basix.ufl.element("Bubble", cell_name, 3)
             enriched = basix.ufl.enriched_element([base, bubble])
             elem_u = basix.ufl.blocked_element(enriched, shape=(3,))
-            print("mammt")
         else:
             elem_u = basix.ufl.element("Lagrange", cell_name, deg, shape=(3,))
 
@@ -139,7 +136,7 @@ class ShellModel:
         h_cell = ufl.CellDiameter(mesh)
         alpha_raw = h**2 / h_cell**2
         alpha = ufl.min_value(alpha_raw, 1)
-
+        
         k_drill = m.E * h**3 / h_cell**2
 
         # Stiffness form
