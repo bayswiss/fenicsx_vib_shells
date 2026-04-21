@@ -26,9 +26,8 @@ class ShellMaterial:
 
 
 class ShellModel:
-    def __init__(self, mesh, degree, material, bcs=None):
+    def __init__(self, mesh, material, bcs=None):
         self.mesh = mesh
-        self.degree = degree
         self.mat = material
         self.dtype = PETSc.ScalarType
         self.bcs = bcs if bcs is not None else []
@@ -40,17 +39,16 @@ class ShellModel:
     # ----- Function space -----
     def _build_function_space(self):
         cell_name = self.mesh.topology.cell_name()
-        deg = self.degree
 
-        if deg==2 and cell_name=="triangle":
-            base = basix.ufl.element("Lagrange", cell_name, deg)
+        if cell_name=="triangle":
+            base = basix.ufl.element("Lagrange", cell_name, 2)
             bubble = basix.ufl.element("Bubble", cell_name, 3)
             enriched = basix.ufl.enriched_element([base, bubble])
             elem_u = basix.ufl.blocked_element(enriched, shape=(3,))
         else:
-            elem_u = basix.ufl.element("Lagrange", cell_name, deg, shape=(3,))
+            elem_u = basix.ufl.element("Lagrange", cell_name, 2, shape=(3,))
 
-        elem_theta = basix.ufl.element("Lagrange", cell_name, deg, shape=(3,))
+        elem_theta = basix.ufl.element("Lagrange", cell_name, 2, shape=(3,))
         mixed_elem = basix.ufl.mixed_element([elem_u, elem_theta])
 
         self.V = fem.functionspace(self.mesh, mixed_elem)
@@ -110,7 +108,6 @@ class ShellModel:
     def _build_forms(self):
         m = self.mat
         mesh = self.mesh
-        deg = self.degree
         h = m.h
         n = self.n
 
@@ -128,10 +125,8 @@ class ShellModel:
         Q_u = m.mu * (5 / 6) * h * gamma_u
 
         # PSRI
-        full_degree = 2 * deg # + 2
-        reduced_degree = max(1, deg)
-        dx_f = ufl.Measure("dx", domain=mesh, metadata={"quadrature_degree": full_degree})
-        dx_r = ufl.Measure("dx", domain=mesh, metadata={"quadrature_degree": reduced_degree})
+        dx_f = ufl.Measure("dx", domain=mesh, metadata={"quadrature_degree": 6})
+        dx_r = ufl.Measure("dx", domain=mesh, metadata={"quadrature_degree": 2})
 
         h_cell = ufl.CellDiameter(mesh)
         alpha_raw = h**2 / h_cell**2

@@ -7,7 +7,7 @@ import ufl
 import numpy as np
 from fenicsx_vib_shells import ShellMaterial, ShellModel
 
-mesh_data = gmsh.read_from_msh("square.msh", MPI.COMM_WORLD, 0, gdim=3)
+mesh_data = gmsh.read_from_msh("test/square.msh", MPI.COMM_WORLD, 0, gdim=3)
 msh = mesh_data[0]
 cell_tags = mesh_data[1]
 facet_tags = mesh_data[2]
@@ -19,7 +19,7 @@ mat = ShellMaterial(
     h   = 2e-3
 )
 
-shell = ShellModel(msh, 2, mat)
+shell = ShellModel(msh, mat)
 
 # Translation bc
 dofs_u = fem.locate_dofs_topological(
