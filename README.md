@@ -29,6 +29,7 @@ pip install .
 **For developers (allows you to edit code without reinstalling):**
 ```bash
 pip install -e .
+```
 
 ## Quick start
 
