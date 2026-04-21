@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fenicsx_vib_shells"
+version = "1.0.0"
+description = "A FEniCSx shell implementation for eigenfrequency analysis and frequency response"
+readme = "README.md"
+authors = [{ name = "Antonio Baiano Svizzero", email = "antonio.bs@undabit.com" }]
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = [
+    "mpi4py",
+    "numpy",
+    "petsc4py",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/bayswiss/fenicsx_vib_shells"
+"Bug Tracker" = "https://github.com/bayswiss/fenicsx_vib_shells/issues"
