@@ -19,6 +19,6 @@ gmsh.model.addPhysicalGroup(1, [1,2,3,4], 2, "bc")
 gmsh.model.mesh.generate(2)
 gmsh.fltk.run()
 
-gmsh.write("square_quads.msh")
+gmsh.write("test/square_quads.msh")
  
 gmsh.finalize()
