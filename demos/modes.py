@@ -4,6 +4,8 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+# Eigenfrequency analysis of a shell.
+
 from mpi4py import MPI
 from dolfinx.io import gmsh, VTXWriter
 from dolfinx import fem
