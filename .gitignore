@@ -1,5 +1,5 @@
-*.msh
 *.bp
+*.step
 fields/
 
 # Byte-compiled / optimized / DLL files
