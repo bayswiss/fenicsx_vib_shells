@@ -4,8 +4,9 @@ A FEniCSx shell library for modal analysis and linear frequency response.
 
 **Compatible with dolfinx v0.10.0.**
 
-## Prerequisites
+<img width="604" height="847" alt="Screenshot from 2026-04-24 12-27-27" src="https://github.com/user-attachments/assets/cbc1f377-b9db-4747-8af4-2adf5b13a3bd" />
 
+## Prerequisites
 This tool requires **FEniCSx** with complex build of PETSc. We recommend installing it via ```conda```.
 
 **Install FEniCSx via Conda:**
@@ -53,5 +54,6 @@ shell.assemble_matrices()
 
 ## References
 
-- J. Bleyer, [Linear Shells](https://bleyerj.github.io/comet-fenicsx/tours/shells/linear_shell/linear_shell.html), Numerical Tours of Computational Mechanics with FEniCSx
-- FEniCSx-Shells, [Nonlinear Naghdi clamped semi-cylinder](https://fenics-shells.github.io/fenicsx-shells/demo/demo_nonlinear-naghdi-clamped-semicylinder.html)
+- J. Bleyer - [Linear Shells](https://bleyerj.github.io/comet-fenicsx/tours/shells/linear_shell/linear_shell.html)
+- J. S. Hale, M. Brunetti, S. Bordas, C. Maurini - [FENICS-SHELLS: an open-source library for simulating thin structures](https://hal.sorbonne-universite.fr/hal-01763370v1/file/fenics-shells.pdf)
+- T. Yang, M. Brunetti - [Clamped semi-cylindrical Naghdi shell under point load](https://fenics-shells.github.io/fenicsx-shells/demo/demo_nonlinear-naghdi-clamped-semicylinder.html)
