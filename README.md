@@ -51,9 +51,10 @@ shell = ShellModel(msh, mat)
 shell.assemble_matrices()
 # shell.K and shell.M are PETSc matrices - ready for SLEPc (modal) or PETSc (FRF)
 ```
+> [!WARNING]
+> **Parallel use on branching shells.** On dolfinx 0.10.0, `max_facet_to_cell_links` is not exposed in `dolfinx.io.gmsh`. It could happen that the partitioner places a rank boundary along a junction edge of a branching mesh (T-joints, stiffened panels, where more than 2 shell facets meet at one edge), in which case cell connectivity at that edge may be silently dropped. Run serial on branching meshes until dolfinx 0.11 is released.
 
 ## References
-
 - J. Bleyer - [Linear Shells](https://bleyerj.github.io/comet-fenicsx/tours/shells/linear_shell/linear_shell.html)
 - J. S. Hale, M. Brunetti, S. Bordas, C. Maurini - [FENICS-SHELLS: an open-source library for simulating thin structures](https://hal.sorbonne-universite.fr/hal-01763370v1/file/fenics-shells.pdf)
 - T. Yang, M. Brunetti - [Clamped semi-cylindrical Naghdi shell under point load](https://fenics-shells.github.io/fenicsx-shells/demo/demo_nonlinear-naghdi-clamped-semicylinder.html)
