@@ -1,4 +1,8 @@
-from dataclasses import dataclass
+# Copyright (C) 2026 Antonio Baiano Svizzero
+#
+# This file is part of FEniCSx_vib_Shells (https://github.com/bayswiss/fenicsx_vib_shells)
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 import basix
 import basix.ufl
@@ -6,7 +10,7 @@ import ufl
 from dolfinx import fem, mesh as _mesh
 from dolfinx.fem.petsc import create_matrix, assemble_matrix 
 from petsc4py import PETSc
-
+from dataclasses import dataclass
 
 def plane_stress_hooke(
     eps_2d: ufl.core.expr.Expr,
