@@ -197,7 +197,7 @@ class ShellModel:
 
         gamma = t_grad(ufl.dot(disp, n)) - ufl.dot(P.T, beta)
 
-        drill = ufl.dot(rot, n) - 0.5 * (t_gu[0, 1] - t_gu[1, 0])
+        drill = ufl.dot(rot, n) + 0.5 * (t_gu[0, 1] - t_gu[1, 0])
 
         return eps_m, kappa, gamma, drill
 
