@@ -163,7 +163,7 @@ def test_plate_modes():
         108.27,
         131.64,
     ]
-    tol = 2e-2
+    tol = 1e-2
 
     freqs = _compute_modal_frequencies(
         mesh_file, material, clamp_u_tags, clamp_theta_tags
@@ -196,7 +196,7 @@ def test_tbeam_modes():
         14.437149,
         17.731813,
     ]
-    tol = 5e-2
+    tol = 1e-2
 
     freqs = _compute_modal_frequencies(
         mesh_file, material, clamp_u_tags, clamp_theta_tags
@@ -223,7 +223,7 @@ def test_cyl_shell_modes():
         101.611235,
         112.830119,
     ]
-    tol = 5e-2
+    tol = 1e-2
 
     freqs = _compute_modal_frequencies(
         mesh_file, material, clamp_u_tags, clamp_theta_tags
